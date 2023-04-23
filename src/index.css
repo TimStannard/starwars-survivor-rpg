@@ -1,14 +1,12 @@
+/* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&display=swap');
 
+/* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+/* general */
 * {
     font-family: "Chakra Petch", Arial, sans-serif;
-}
-
-button {
-    text-transform: uppercase;
 }
