@@ -47,13 +47,13 @@ function IncDecCounter({ type, currentPoints, updateTotalPoints }: Props) {
                 </label>
             </div>
             <div className="w-2/5 text-right">
-                <button className="text-indigo-100 px-1 border-solid border-2 bg-indigo-900/70 border-indigo-600 hover:bg-indigo-500/70" type="button" onClick={decNum}>-</button>
+                <button className="text-indigo-100 rounded px-1 h-7 border-solid border-2 bg-indigo-900/70 border-indigo-600 hover:bg-indigo-500/70" type="button" onClick={decNum}>-</button>
                 <input type="text"
                     className={`text-center w-4 bg-transparent mx-2 ${getTextColor(num)}`}
                     value={num}
                     readOnly
                 />
-                <button className="text-indigo-100 px-1 border-solid border-2 bg-indigo-900/70 border-indigo-600 hover:bg-indigo-500/70" type="button" onClick={incNum}>+</button>
+                <button className="text-indigo-100 rounded px-1 h-7 border-solid border-2 bg-indigo-900/70 border-indigo-600 hover:bg-indigo-500/70" type="button" onClick={incNum}>+</button>
             </div>
         </div>
     );

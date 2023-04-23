@@ -1,6 +1,8 @@
 import { useState } from "react"
 import MainTitle from "./components/menu/MainTitle";
 import CharGeneration from "./components/menu/CharGeneration";
+// css
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
 
