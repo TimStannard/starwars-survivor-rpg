@@ -1,46 +1,23 @@
 import { useState } from 'react';
+import { charType } from '../../types/char';
 import StatPicker from '../util/newCharAttribs/StatPicker';
 
 type Props = {
-    defaultStats: object
-    setCharData: (stats: object) => void
+    setCharData: (stats: charType) => void
     setPage: (location: string) => void
 };
 
-export const NewCharForm = ({ defaultStats, setCharData, setPage }: Props) => {
+export const NewCharForm = ({ setCharData, setPage }: Props) => {
     // user inputs
     const [charName, setName] = useState<string>('')
-    const [charStats, setCharStats] = useState<object>({
-        name: "",
-        alignment: 50,
-
-        items: [
-            {
-                id: 1,
-                name: "Test",
-                type: "armour",
-                img: "test",
-            }
-        ],
-
-        forcePoints: {
-            cur: 50,
-            max: 50
-        },
-        hp: {
-            cur: 50,
-            max: 50
-        },
-        stats: {
-            strength: 5,
-            intelligence: 5,
-            agility: 5,
-            perception: 5,
-            constitution: 5,
-            luck: 5
-        },
-        skills: {}
-    })
+    const [charStats, setCharStats] = useState<charType['stats']>({
+        strength: 5,
+        intelligence: 5,
+        agility: 5,
+        perception: 5,
+        constitution: 5,
+        luck: 5
+    });
     // point logic
     const [points, setPoints] = useState(5)
     const calculatePoints = (pointValue: number) => {
@@ -49,10 +26,29 @@ export const NewCharForm = ({ defaultStats, setCharData, setPage }: Props) => {
     // submit
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
+        // set default stats + user inputted choices
         setCharData({
-            ...defaultStats,
             name: charName,
-            stats: charStats
+            alignment: 50,
+            items: [
+                {
+                    id: 1,
+                    name: "Test",
+                    type: "armour",
+                    img: "test",
+                }
+            ],
+
+            forcePoints: {
+                cur: 50,
+                max: 50
+            },
+            hp: {
+                cur: 50,
+                max: 50
+            },
+            stats: charStats,
+            skills: {}
         })
         setPage("generate");
     };

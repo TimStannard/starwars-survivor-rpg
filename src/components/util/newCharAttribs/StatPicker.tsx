@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 
+type Stats = {
+    strength: number;
+    intelligence: number;
+    agility: number;
+    perception: number;
+    constitution: number;
+    luck: number;
+}
+
 type Props = {
-    statType: string
-    currentPoints: number
-    stats: object
-    updateTotalPoints: (pointValue: number) => void
-    updateCurrentStats: (stats: object) => void
+    statType: string;
+    currentPoints: number;
+    stats: Stats;
+    updateTotalPoints: (pointValue: number) => void;
+    updateCurrentStats: (stats: Stats) => void; // update type here
 };
 
 function getTextColor(value: number) {
@@ -51,7 +60,6 @@ function StatPicker({ statType, currentPoints, stats, updateTotalPoints, updateC
             }
         )
     }, [num])
-
 
     return (
         <div className="flex mb-1 px-3">
