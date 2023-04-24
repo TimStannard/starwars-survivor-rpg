@@ -2,11 +2,12 @@
 import { NewCharForm } from './NewCharForm';
 
 type Props = {
+    charData: object
     changePage: (input: string) => void
     setCharacterData: ({ }) => void
 };
 
-const CharGeneration = ({ changePage, setCharacterData }: Props) => {
+const CharGeneration = ({ charData, changePage, setCharacterData }: Props) => {
 
     return (
         <div className="border-solid border-2 rounded border-gray-700 m-auto bg-[url('/src/assets/main-title-image.jpeg')] bg-no-repeat bg-[right_-2rem_top] bg-cover h-[690px] w-[400px]">
@@ -16,7 +17,7 @@ const CharGeneration = ({ changePage, setCharacterData }: Props) => {
             </div>
             <div className="pt-3">
                 <div className="px-3 rounded py-5 mb-2 w-4/5 text-indigo-100 m-auto block border-solid border-2 bg-indigo-900/70 border-indigo-600 text-center">
-                    <NewCharForm setCharData={setCharacterData} />
+                    <NewCharForm defaultStats={charData} setCharData={setCharacterData} setPage={changePage} />
                 </div>
             </div>
             <div className="pt-3">

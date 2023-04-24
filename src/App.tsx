@@ -4,14 +4,15 @@ import { useState } from "react"
 import MainTitle from "./components/main-menu/MainTitle";
 import CharGeneration from "./components/main-menu/CharGeneration";
 import { GameWindow } from "./components/game-window/GameWindow";
-
+// types
+import { charType } from "./types/char";
 // css
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function App() {
 
   const [page, setPage] = useState<string>("title");
-  const [charData, setCharData] = useState<object>({})
+  const [charData, setCharData] = useState<charType | {}>({})
 
   const selectPage = (input: string) => {
     setPage(input)
@@ -20,8 +21,8 @@ function App() {
   return (
     <div className="w-screen h-screen bg-slate-950 flex ">
       {page === "title" && <MainTitle changePage={selectPage} />}
-      {page === "new-game" && <CharGeneration changePage={selectPage} setCharacterData={setCharData} />}
-      {page === "generate" && <GameWindow changePage={selectPage} setCharacterData={setCharData} />}
+      {page === "new-game" && <CharGeneration changePage={selectPage} setCharacterData={setCharData} charData={charData} />}
+      {page === "generate" && <GameWindow changePage={selectPage} setCharacterData={setCharData} characterData={charData} />}
     </div>
   )
 }

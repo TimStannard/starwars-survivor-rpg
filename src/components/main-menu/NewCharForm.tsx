@@ -2,19 +2,44 @@ import { useState } from 'react';
 import StatPicker from '../util/newCharAttribs/StatPicker';
 
 type Props = {
-    setCharData: (data: {}) => void
+    defaultStats: object
+    setCharData: (stats: object) => void
+    setPage: (location: string) => void
 };
 
-export const NewCharForm = ({ setCharData }: Props) => {
+export const NewCharForm = ({ defaultStats, setCharData, setPage }: Props) => {
     // user inputs
     const [charName, setName] = useState<string>('')
     const [charStats, setCharStats] = useState<object>({
-        strength: 5,
-        intelligence: 5,
-        agility: 5,
-        perception: 5,
-        constitution: 5,
-        luck: 5
+        name: "",
+        alignment: 50,
+
+        items: [
+            {
+                id: 1,
+                name: "Test",
+                type: "armour",
+                img: "test",
+            }
+        ],
+
+        forcePoints: {
+            cur: 50,
+            max: 50
+        },
+        hp: {
+            cur: 50,
+            max: 50
+        },
+        stats: {
+            strength: 5,
+            intelligence: 5,
+            agility: 5,
+            perception: 5,
+            constitution: 5,
+            luck: 5
+        },
+        skills: {}
     })
     // point logic
     const [points, setPoints] = useState(5)
@@ -25,9 +50,11 @@ export const NewCharForm = ({ setCharData }: Props) => {
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         setCharData({
+            ...defaultStats,
             name: charName,
             stats: charStats
         })
+        setPage("generate");
     };
 
     return (
