@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Props = {
-    type: string
+    statType: string
     currentPoints: number
+    stats: object
     updateTotalPoints: (pointValue: number) => void
+    updateCurrentStats: (stats: object) => void
 };
 
 function getTextColor(value: number) {
@@ -24,26 +26,38 @@ function getTextColor(value: number) {
     }
 }
 
-function IncDecCounter({ type, currentPoints, updateTotalPoints }: Props) {
+function StatPicker({ statType, currentPoints, stats, updateTotalPoints, updateCurrentStats }: Props) {
+
     const [num, setNum] = useState(5);
     const incNum = () => {
         if (num < 10 && currentPoints > 0) {
-            setNum(Number(num) + 1);
+            setNum(Number(num) + 1)
             updateTotalPoints(-1)
         }
     };
     const decNum = () => {
         if (num > 1) {
-            setNum(num - 1);
+            setNum(num - 1)
             updateTotalPoints(1)
         }
     }
+
+    // update data if stat number is changed
+    useEffect(() => {
+        updateCurrentStats(
+            {
+                ...stats,
+                [statType.toLowerCase()]: num
+            }
+        )
+    }, [num])
+
 
     return (
         <div className="flex mb-1 px-3">
             <div className="w-3/5">
                 <label className="block text-indigo-100 pd-3 text-left pr-4" htmlFor="inline-full-name">
-                    {type}:
+                    {statType}:
                 </label>
             </div>
             <div className="w-2/5 text-right">
@@ -58,4 +72,4 @@ function IncDecCounter({ type, currentPoints, updateTotalPoints }: Props) {
         </div>
     );
 }
-export default IncDecCounter;
+export default StatPicker;
