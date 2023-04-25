@@ -29,3 +29,8 @@ export type charType = {
     }
     skills: {}
 }
+
+export type characterDataContextType = {
+    data: charType
+    updateData: (data: object) => void;
+};

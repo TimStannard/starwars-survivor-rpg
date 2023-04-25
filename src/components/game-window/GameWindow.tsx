@@ -1,15 +1,23 @@
+// react
+import { useContext } from "react"
+// types
 import { charType } from '../../types/char';
+// // context
+import { CharacterContext } from "../../context/characterData";
 
-type Props = {
-    changePage: (input: string) => void
-    characterData: charType
-    setCharacterData: (stats: charType) => void
-};
 
-export const GameWindow = ({ changePage, characterData, setCharacterData }: Props) => {
-    console.log({ characterData });
+export const GameWindow = () => {
+
+    // Use useContext to access the character data and setter function
+    const { charData, setCharData } = useContext(CharacterContext);
+
+    const updateCharData = (newCharData: charType) => {
+        // Call the setter function to update the character data
+        setCharData(newCharData);
+    };
+    // console.log({ charData });
 
     return (
-        <div>GameWindow</div>
+        <div>Game</div>
     )
 }

@@ -1,14 +1,28 @@
-import { useState } from 'react';
+// react
+import { useState, useContext } from "react"
+// types
 import { charType } from '../../types/char';
+// // context
+import { CharacterContext } from "../../context/characterData";
+// consts
+import { attributes } from "../../consts/character";
+// components
 import StatPicker from '../util/newCharAttribs/StatPicker';
 
 type Props = {
-    setCharData: (stats: charType) => void
     setPage: (location: string) => void
 };
 
-export const NewCharForm = ({ setCharData, setPage }: Props) => {
-    // user inputs
+export const NewCharForm = ({ setPage }: Props) => {
+    // Use useContext to access the character data and setter function
+    const { setCharData } = useContext(CharacterContext);
+    const updateCharData = (newCharData: charType) => {
+        // Call the setter function to update the character data
+        setCharData(newCharData);
+    };
+
+
+    // user input state
     const [charName, setName] = useState<string>('')
     const [charStats, setCharStats] = useState<charType['stats']>({
         strength: 5,
@@ -18,16 +32,18 @@ export const NewCharForm = ({ setCharData, setPage }: Props) => {
         constitution: 5,
         luck: 5
     });
-    // point logic
+
+    // handling the attribute points logic
     const [points, setPoints] = useState(5)
     const calculatePoints = (pointValue: number) => {
         setPoints(points + pointValue)
     }
+
     // submit
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         // set default stats + user inputted choices
-        setCharData({
+        updateCharData({
             name: charName,
             alignment: 50,
             items: [
@@ -69,12 +85,16 @@ export const NewCharForm = ({ setCharData, setPage }: Props) => {
                 </div>
             </div>
             <div className="mb-3">
-                <StatPicker statType="Strength" updateTotalPoints={calculatePoints} currentPoints={points} updateCurrentStats={setCharStats} stats={charStats} />
-                <StatPicker statType="Intelligence" updateTotalPoints={calculatePoints} currentPoints={points} updateCurrentStats={setCharStats} stats={charStats} />
-                <StatPicker statType="Agility" updateTotalPoints={calculatePoints} currentPoints={points} updateCurrentStats={setCharStats} stats={charStats} />
-                <StatPicker statType="Perception" updateTotalPoints={calculatePoints} currentPoints={points} updateCurrentStats={setCharStats} stats={charStats} />
-                <StatPicker statType="Constitution" updateTotalPoints={calculatePoints} currentPoints={points} updateCurrentStats={setCharStats} stats={charStats} />
-                <StatPicker statType="Luck" updateTotalPoints={calculatePoints} currentPoints={points} updateCurrentStats={setCharStats} stats={charStats} />
+                {attributes.map((attribute, index) => (
+                    <StatPicker
+                        key={`${index}-${attribute.toLowerCase()}`}
+                        statType={attribute}
+                        updateTotalPoints={calculatePoints}
+                        currentPoints={points}
+                        updateCurrentStats={setCharStats}
+                        stats={charStats}
+                    />
+                ))}
             </div>
             <div className="mb-5 py-1 px-2 inline-block rounded-lg bg-indigo-100/20 text-sm">Points remaining: {points}</div>
             <button className="p-2 w-[75%] rounded text-indigo-100 m-auto block border-solid border-2 bg-indigo-900/95 border-indigo-600 hover:bg-indigo-500/70"

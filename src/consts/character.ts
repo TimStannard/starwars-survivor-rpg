@@ -1,0 +1,1 @@
+export const attributes = ["Strength", "Intelligence", "Agility", "Perception", "Constitution", "Luck"]
