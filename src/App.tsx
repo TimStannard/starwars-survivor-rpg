@@ -7,7 +7,7 @@ import { CharacterContext } from "./context/characterData";
 // components
 import Landing from "./components/main-menu/Landing";
 import NewGame from "./components/main-menu/NewGame";
-import { GameWindow } from "./components/game-window/GameWindow";
+import { GameWindow } from "./components/game-interface/GameWindow";
 // css
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
