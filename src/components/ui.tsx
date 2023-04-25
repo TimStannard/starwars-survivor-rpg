@@ -1,4 +1,4 @@
-export const ui = () => {
+export const Ui = () => {
     return (
         <div>ui</div>
     )

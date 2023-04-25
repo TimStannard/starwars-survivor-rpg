@@ -1,4 +1,4 @@
-export const display = () => {
+export const Display = () => {
     return (
         <div>display</div>
     )

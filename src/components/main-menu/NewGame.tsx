@@ -1,11 +1,11 @@
 // components
-import { NewCharForm } from './NewCharForm';
+import { NewCharForm } from './char-generation/NewCharForm';
 
 type Props = {
     changePage: (input: string) => void
 };
 
-const CharGeneration = ({ changePage }: Props) => {
+const NewGame = ({ changePage }: Props) => {
 
     return (
         <div className="border-solid border-2 rounded border-gray-700 m-auto bg-[url('/src/assets/main-title-image.jpeg')] bg-no-repeat bg-[right_-2rem_top] bg-cover h-[690px] w-[400px]">
@@ -30,4 +30,4 @@ const CharGeneration = ({ changePage }: Props) => {
 
 }
 
-export default CharGeneration
+export default NewGame

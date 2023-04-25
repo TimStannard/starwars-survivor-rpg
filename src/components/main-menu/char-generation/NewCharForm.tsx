@@ -1,26 +1,26 @@
 // react
 import { useState, useContext } from "react"
 // types
-import { charType } from '../../types/char';
+import { charType } from '../../../types/char';
 // // context
-import { CharacterContext } from "../../context/characterData";
+import { CharacterContext } from "../../../context/characterData";
 // consts
-import { attributes } from "../../consts/character";
+import { attributes } from "../../../consts/character";
 // components
-import StatPicker from '../util/newCharAttribs/StatPicker';
+import StatPicker from "./StatPicker";
 
 type Props = {
     setPage: (location: string) => void
 };
 
 export const NewCharForm = ({ setPage }: Props) => {
+
     // Use useContext to access the character data and setter function
     const { setCharData } = useContext(CharacterContext);
     const updateCharData = (newCharData: charType) => {
         // Call the setter function to update the character data
         setCharData(newCharData);
     };
-
 
     // user input state
     const [charName, setName] = useState<string>('')
@@ -39,7 +39,7 @@ export const NewCharForm = ({ setPage }: Props) => {
         setPoints(points + pointValue)
     }
 
-    // submit
+    // submit character
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault()
         // set default stats + user inputted choices
@@ -97,8 +97,9 @@ export const NewCharForm = ({ setPage }: Props) => {
                 ))}
             </div>
             <div className="mb-5 py-1 px-2 inline-block rounded-lg bg-indigo-100/20 text-sm">Points remaining: {points}</div>
-            <button className="p-2 w-[75%] rounded text-indigo-100 m-auto block border-solid border-2 bg-indigo-900/95 border-indigo-600 hover:bg-indigo-500/70"
-            >Generate Character <i className="bi bi-arrow-right relative top-[1px]"></i></button>
+            <button className="p-2 w-[75%] rounded text-indigo-100 m-auto block border-solid border-2 bg-indigo-900/95 border-indigo-600 hover:bg-indigo-500/70">
+                Generate Character <i className="bi bi-arrow-right relative top-[1px]"></i>
+            </button>
         </form>
     )
 }

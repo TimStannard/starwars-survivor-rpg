@@ -3,7 +3,7 @@ type Props = {
 };
 
 
-const MainTitle = ({ changePage }: Props) => {
+const Landing = ({ changePage }: Props) => {
     return (
         <div className="rounded border-solid border-2 border-gray-700 m-auto bg-[url('/src/assets/main-title-image.jpeg')] bg-no-repeat bg-[right_-2rem_top] bg-cover h-[600px] w-[400px]">
             <div className="pt-18">
@@ -23,4 +23,4 @@ const MainTitle = ({ changePage }: Props) => {
     )
 }
 
-export default MainTitle
+export default Landing

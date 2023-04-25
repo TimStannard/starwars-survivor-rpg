@@ -5,8 +5,8 @@ import { charType } from "./types/char";
 // context
 import { CharacterContext } from "./context/characterData";
 // components
-import MainTitle from "./components/main-menu/MainTitle";
-import CharGeneration from "./components/main-menu/CharGeneration";
+import Landing from "./components/main-menu/Landing";
+import NewGame from "./components/main-menu/NewGame";
 import { GameWindow } from "./components/game-window/GameWindow";
 // css
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -24,9 +24,9 @@ function App() {
     <div className="w-screen h-screen bg-slate-950 flex ">
       {/* Provide the character data and setter function to the context */}
       <CharacterContext.Provider value={{ charData, setCharData }}>
-        {page === "title" && <MainTitle changePage={selectPage} />}
+        {page === "title" && <Landing changePage={selectPage} />}
         {page === "new-game" && (
-          <CharGeneration
+          <NewGame
             changePage={selectPage}
           />
         )}
