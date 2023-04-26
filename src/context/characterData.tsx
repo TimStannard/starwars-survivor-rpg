@@ -5,7 +5,9 @@ import { charType } from "../types/char";
 export const CharacterContext = createContext<{
     charData: charType | null,
     setCharData: React.Dispatch<React.SetStateAction<charType | null>>
+    setPage: React.Dispatch<React.SetStateAction<string>>
 }>({
     charData: null,
     setCharData: () => { },
+    setPage: () => { },
 });

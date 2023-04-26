@@ -9,14 +9,10 @@ import { attributes } from "../../../consts/character";
 // components
 import StatPicker from "./StatPicker";
 
-type Props = {
-    setPage: (location: string) => void
-};
-
-export const NewCharForm = ({ setPage }: Props) => {
+export const NewCharForm = () => {
 
     // Use useContext to access the character data and setter function
-    const { setCharData } = useContext(CharacterContext);
+    const { setCharData, setPage } = useContext(CharacterContext);
     const updateCharData = (newCharData: charType) => {
         // Call the setter function to update the character data
         setCharData(newCharData);
@@ -66,7 +62,7 @@ export const NewCharForm = ({ setPage }: Props) => {
             stats: charStats,
             skills: {}
         })
-        setPage("generate");
+        setPage("intro");
     };
 
     return (

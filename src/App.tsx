@@ -7,7 +7,8 @@ import { CharacterContext } from "./context/characterData";
 // components
 import Landing from "./components/main-menu/Landing";
 import NewGame from "./components/main-menu/NewGame";
-import { GameWindow } from "./components/game-interface/GameWindow";
+import Intro from "./components/main-menu/Intro";
+import Generate from "./components/main-menu/Generate";
 // css
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
@@ -16,23 +17,14 @@ function App() {
   const [page, setPage] = useState<string>("title");
   const [charData, setCharData] = useState<charType | null>(null)
 
-  const selectPage = (input: string) => {
-    setPage(input)
-  }
-
   return (
     <div className="w-screen h-screen bg-slate-950 flex ">
       {/* Provide the character data and setter function to the context */}
-      <CharacterContext.Provider value={{ charData, setCharData }}>
-        {page === "title" && <Landing changePage={selectPage} />}
-        {page === "new-game" && (
-          <NewGame
-            changePage={selectPage}
-          />
-        )}
-        {page === "generate" && charData !== null && (
-          <GameWindow />
-        )}
+      <CharacterContext.Provider value={{ charData, setCharData, setPage }}>
+        {page === "title" && <Landing />}
+        {page === "new-game" && <NewGame />}
+        {page === "intro" && charData !== null && <Intro />}
+        {page === "generate" && <Generate />}
       </CharacterContext.Provider>
     </div>
   )

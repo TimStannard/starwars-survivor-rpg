@@ -14,7 +14,7 @@ type Props = {
     currentPoints: number;
     stats: Stats;
     updateTotalPoints: (pointValue: number) => void;
-    updateCurrentStats: (stats: Stats) => void; // update type here
+    updateCurrentStats: (stats: Stats) => void;
 };
 
 function getTextColor(value: number) {
