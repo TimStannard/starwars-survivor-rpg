@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CharacterContext } from "../../context/characterData";
 
 const Generate = () => {
@@ -7,6 +7,14 @@ const Generate = () => {
 
     let textContent = null;
 
+    // change page once element has rendered, once user has clicked through to the end
+    useEffect(() => {
+        if (textNode === 2) {
+            setPage("generate");
+        }
+    }, [textNode, setPage]);
+
+    // different text nodes to step through via click
     if (textNode === 0) {
         textContent = (
             <>
@@ -15,8 +23,12 @@ const Generate = () => {
             </>
         );
     } else if (textNode === 1) {
-        textContent = <p className="mb-5 block">Your head is pounding.</p>;
-    } else if (textNode === 2) setPage("generate")
+        textContent =
+            <>
+                <p className="mb-5 block">The wind blows around you.</p>
+                <p className="mb-5 block"> Your head is pounding...</p>
+            </>
+    }
 
     return (
         <div className="rounded border-solid border-2 border-gray-700 m-auto bg-[url('/src/assets/main-title-image.jpeg')] bg-no-repeat bg-[right_-2rem_top] bg-cover h-[600px] w-[400px]">
