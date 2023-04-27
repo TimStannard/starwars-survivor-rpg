@@ -23,7 +23,7 @@ const NewGame = () => {
             <div className="pt-3">
                 <button className="p-1 w-[30%] rounded text-indigo-100 m-auto block border-solid border-2 border-indigo-600 hover:bg-indigo-500/70"
                     onClick={() => {
-                        setPage("title")
+                        setPage("landing")
                     }}
                 ><i className="bi bi-arrow-left"></i> Go back</button>
             </div>
